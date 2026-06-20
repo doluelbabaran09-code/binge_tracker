@@ -10,11 +10,6 @@ RED = '\033[91m'
 BOLD = '\033[1m'
 RESET = '\033[0m'
 
-
-# =====================================================================
-# 1. ABSTRACTION
-# =====================================================================
-# Abstract Base Class acting as a strict blueprint/contract
 class WatchableItem(ABC):
     def __init__(self, title: str, total: int, watched: int = 0, status: str = "Plan to Watch", rating: str = "N/A"):
         self.title = title
@@ -28,11 +23,6 @@ class WatchableItem(ABC):
         """Abstract method: Must be implemented by all child classes."""
         pass
 
-
-# =====================================================================
-# 2. INHERITANCE & 4. POLYMORPHISM
-# =====================================================================
-# Subclasses inherit from WatchableItem and explicitly invoke super().__init__
 class Anime(WatchableItem):
     def __init__(self, title: str, total: int, watched: int = 0, status: str = "Plan to Watch", rating: str = "N/A"):
         # Explicit inheritance link via super()
@@ -51,12 +41,7 @@ class KDrama(WatchableItem):
     def get_progress_string(self) -> str:
         # Polymorphic behavior specific to K-Drama
         return f"{self.watched}/{self.total} Ch."
-
-
-# =====================================================================
-# 3. ENCAPSULATION
-# =====================================================================
-# Bundling data operations inside a class and protecting data visibility
+    
 class TrackerSystem:
     def __init__(self, filename="my_watchlist.json"):
         self.filename = filename
@@ -112,10 +97,6 @@ class TrackerSystem:
         else:
             print(f"{RED}Invalid selection.{RESET}")
 
-
-# =====================================================================
-# CONTROLLER / USER INTERFACE
-# =====================================================================
 def main():
     system = TrackerSystem()
     
